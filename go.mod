@@ -20,9 +20,9 @@ require (
 	github.com/prometheus/client_model v0.6.2
 	github.com/prometheus/prometheus v0.311.3
 	github.com/securego/gosec/v2 v2.25.1-0.20260423132557-24ee992e9515
-	github.com/sirupsen/logrus v1.9.4
+	github.com/sirupsen/logrus v1.10.1
 	github.com/spf13/cobra v1.10.2
-	github.com/stretchr/testify v1.11.1
+	github.com/stretchr/testify v1.12.0
 	golang.org/x/mod v0.38.0
 	golang.org/x/net v0.57.0
 	gopkg.in/yaml.v3 v3.0.1
