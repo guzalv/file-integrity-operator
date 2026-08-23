@@ -220,6 +220,7 @@ type RequestConfig struct {
 	Middlewares    []middleware
 	APIKey         string
 	AuthToken      string
+	WebhookKey     string
 	// If ResponseBodyInto not nil, then we will attempt to deserialize into
 	// ResponseBodyInto. If Destination is a []byte, then it will return the body as
 	// is.
@@ -506,7 +507,7 @@ func (cfg *RequestConfig) Execute() (err error) {
 		res.Body = io.NopCloser(bytes.NewBuffer(contents))
 
 		// Load the contents into the error format if it is provided.
-		aerr := apierror.Error{Request: cfg.Request, Response: res, StatusCode: res.StatusCode, RequestID: res.Header.Get("request-id")}
+		aerr := apierror.Error{Request: cfg.Request, Response: res, StatusCode: res.StatusCode, RequestID: res.Header.Get("request-id"), WorkspaceID: res.Header.Get("anthropic-workspace-id")}
 		err = aerr.UnmarshalJSON(contents)
 		if err != nil {
 			return err
@@ -595,6 +596,7 @@ func (cfg *RequestConfig) Clone(ctx context.Context) *RequestConfig {
 		Middlewares:    cfg.Middlewares,
 		APIKey:         cfg.APIKey,
 		AuthToken:      cfg.AuthToken,
+		WebhookKey:     cfg.WebhookKey,
 	}
 
 	return new
